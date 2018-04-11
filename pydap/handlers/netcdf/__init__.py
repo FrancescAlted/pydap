@@ -91,7 +91,6 @@ class NetCDFHandler(BaseHandler):
                     self.dataset[dim] = BaseType(dim, vars[dim][:], None,
                                                  attrs(vars[dim]))
         except Exception as exc:
-            raise
             message = 'Unable to open file %s: %s' % (filepath, exc)
             raise OpenFileError(message)
 
