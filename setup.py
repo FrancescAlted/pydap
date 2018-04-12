@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys
 
-__version__ = '3.2.2'
+__version__ = '3.4.0.dev0'
 
 install_requires = [
     'numpy',
@@ -13,8 +13,8 @@ install_requires = [
     'requests'
 ]
 
-if sys.version_info < (3, 5):
-    install_requires.append('singledispatch')
+if sys.version_info < (3, 4):
+    raise NotImplementedError("Python 2 is not supported")
 
 functions_extras = [
     'gsw==3.0.6',
@@ -55,16 +55,12 @@ testing_extras = tests_require + [
     'requests'
 ]
 
-if sys.version_info < (3, 3):
-    testing_extras.append('mock')
 
 setup(name='Pydap',
       version=__version__,
       description="An implementation of the Data Access Protocol.",
       long_description="",
       classifiers=[
-            "Programming Language :: Python :: 2",
-            "Programming Language :: Python :: 2.7",
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3.4",
             "Programming Language :: Python :: 3.5",
@@ -79,8 +75,7 @@ setup(name='Pydap',
       maintainer_email='james@hiebert.name',
       url='http://pydap.org/',
       license='MIT',
-      packages=find_packages('pydap'),
-      package_dir={'': 'pydap'},
+      packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
       namespace_packages=["pydap", "pydap.responses",

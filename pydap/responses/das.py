@@ -7,10 +7,7 @@ downloaded.
 
 """
 
-try:
-    from functools import singledispatch
-except ImportError:
-    from singledispatch import singledispatch
+from functools import singledispatch
 from collections import Iterable
 
 from six import string_types, integer_types

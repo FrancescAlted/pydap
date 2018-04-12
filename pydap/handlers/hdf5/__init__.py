@@ -20,6 +20,7 @@ class HDF5Handler(BaseHandler):
     extensions = re.compile(r"^.*\.hdf5$", re.IGNORECASE)
 
     def __init__(self, filepath):
+        BaseHandler.__init__(self)
         self.filepath = filepath
 
     def parse_constraints(self, environ):
@@ -35,7 +36,7 @@ class HDF5Handler(BaseHandler):
         environ['pydap.headers'].append( ('Last-modified', last_modified) )
 
         dataset = DatasetType(name=os.path.split(self.filepath)[1],
-                attributes={'NC_GLOBAL': dict(fp.attrs)})
+                              attributes={'NC_GLOBAL': dict(fp.attrs)})
 
         fields, queries = environ['pydap.ce']
         fields = fields or [[(name, ())] for name in fp.keys()]

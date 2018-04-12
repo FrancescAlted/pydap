@@ -25,7 +25,7 @@ class PyTablesHandler(BaseHandler):
 
     def __init__(self, filepath):
         BaseHandler.__init__(self)
-
+        self.filepath = filepath
         try:
             self.fp = tables.open_file(filepath, 'r')
         except Exception as exc:

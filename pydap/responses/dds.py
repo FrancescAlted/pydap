@@ -8,10 +8,7 @@ necessary.
 
 """
 
-try:
-    from functools import singledispatch
-except ImportError:
-    from singledispatch import singledispatch
+from functools import singledispatch
 
 from six.moves import map, zip
 

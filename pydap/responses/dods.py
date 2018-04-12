@@ -23,10 +23,7 @@ from ..lib import (walk, START_OF_SEQUENCE, END_OF_SEQUENCE, __version__,
 from .lib import BaseResponse
 from .dds import dds
 
-try:
-    from functools import singledispatch
-except ImportError:
-    from singledispatch import singledispatch
+from functools import singledispatch
 
 
 def DAP2_response_dtypemap(dtype):

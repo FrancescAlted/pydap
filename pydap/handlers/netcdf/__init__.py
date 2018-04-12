@@ -39,7 +39,6 @@ class NetCDFHandler(BaseHandler):
 
     def __init__(self, filepath):
         BaseHandler.__init__(self)
-
         self.filepath = filepath
         try:
             with netcdf_file(self.filepath, 'r') as source:
@@ -121,7 +120,6 @@ class LazyVariable:
 
     def get_var_chunk_cache(self):
         raise NotImplementedError('get_var_chunk_cache is not implemented')
-        return
 
     def ncattrs(self):
         return self._attributes
