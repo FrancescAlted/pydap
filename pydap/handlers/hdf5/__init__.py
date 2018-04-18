@@ -17,7 +17,7 @@ from pydap.lib import quote
 
 class HDF5Handler(BaseHandler):
 
-    extensions = re.compile(r"^.*\.hdf5$", re.IGNORECASE)
+    extensions = re.compile(r"^.*\.h5$", re.IGNORECASE)
 
     def __init__(self, filepath):
         BaseHandler.__init__(self)
@@ -32,20 +32,20 @@ class HDF5Handler(BaseHandler):
             message = 'Unable to open file %s.' % self.filepath
             raise OpenFileError(message)
 
-        last_modified = formatdate( time.mktime( time.localtime( os.stat(self.filepath)[ST_MTIME] ) ) )
-        environ['pydap.headers'].append( ('Last-modified', last_modified) )
+        last_modified = formatdate( time.mktime( time.localtime( os.stat(self.filepath)[ST_MTIME])))
+        environ['pydap.headers'].append(('Last-modified', last_modified))
 
-        dataset = DatasetType(name=os.path.split(self.filepath)[1],
-                              attributes={'NC_GLOBAL': dict(fp.attrs)})
+        self.dataset = DatasetType(name=os.path.split(self.filepath)[1],
+                                   attributes={'NC_GLOBAL': dict(fp.attrs)})
 
         fields, queries = environ['pydap.ce']
         fields = fields or [[(name, ())] for name in fp.keys()]
         for var in fields:
-            get_child(fp, dataset, var, buf_size)
+            get_child(fp, self.dataset, var, buf_size)
 
-        dataset._set_id()
-        dataset.close = fp.close
-        return dataset
+        #dataset._set_id()
+        self.dataset.close = fp.close
+        return self.dataset
 
 
 def get_child(source, target, var, buf_size):

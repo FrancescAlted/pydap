@@ -92,6 +92,12 @@ setup(name='Pydap',
       },
       test_suite="pydap.tests",
       entry_points="""
+            [pydap.handler]
+            # arrstor = kisters.water.array_storage.physical_storage.padp.pydap_adapter:Handler
+            arrstor = pydap.handlers.hdf5:HDF5Handler
+            nc = pydap.handlers.netcdf:NetCDFHandler
+            as = kisters.water.array_storage.physical_storage.padp.pydap_adapter:ArrayStorageHandler
+
             [pydap.response]
             das = pydap.responses.das:DASResponse
             dds = pydap.responses.dds:DDSResponse
