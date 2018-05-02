@@ -94,8 +94,7 @@ setup(name='Pydap',
       entry_points="""
             [pydap.handler]
             nc = pydap.handlers.netcdf:NetCDFHandler
-            #as = kisters.water.array_storage.physical_storage.padp.pydap_adapter:ArrayStorageHandler
-            as = pydap.handlers.array_storage:ArrayStorageHandler
+            as = kisters.water.array_storage.physical_storage.padp.pydap_adapter:ArrayStorageHandler
 
             [pydap.response]
             das = pydap.responses.das:DASResponse
